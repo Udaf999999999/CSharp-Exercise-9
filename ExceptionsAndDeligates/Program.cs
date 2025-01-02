@@ -17,16 +17,12 @@ internal class Program
     delegate int RandomNumberDelegate();
     static void Main(string[] args)
     {
-        ShowMessageDelegate showMessageDelegate = delegate (string str)
-        {
-            Console.WriteLine(str);
-        };
+
+
+        ShowMessageDelegate showMessageDelegate = (string str) => Console.WriteLine(str);
         showMessageDelegate.Invoke("Hello World!");
 
-        RandomNumberDelegate randomNumberDelegate = delegate ()
-        {
-            return new Random().Next(0, 100);
-        };
+        RandomNumberDelegate randomNumberDelegate = () => new Random().Next(0, 100);
         int result = randomNumberDelegate.Invoke();
         Console.WriteLine(result);
 
