@@ -1,26 +1,43 @@
-﻿namespace ExceptionsAndDeligates;
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace ExceptionsAndDeligates;
 internal class Program
 {
     static int Division(int a, int b)
     {
         return a / b;
     }
-    public static void Minus(int a, int b) => Console.WriteLine(a - b); 
-    public static void Sum(int a , int b) => Console.WriteLine(b + a);
+    public static void Minus(int a, int b) => Console.WriteLine(a - b);
+    public static void Sum(int a, int b) => Console.WriteLine(b + a);
     public delegate void MinusDeilgate(int a, int b);
     public static int AddNumbers(int param1, int param2) => param1 + param2;
     public static void Display(string message) => Console.WriteLine(message);
-    public static bool IsApple(string modelName) => modelName == "IPhone X"? true: false;
+    public static bool IsApple(string modelName) => modelName == "IPhone X" ? true : false;
+    delegate void ShowMessageDelegate(string _message);
+    delegate int RandomNumberDelegate();
     static void Main(string[] args)
     {
-        MinusDeilgate minusDeilgate = Minus;
-        minusDeilgate += Sum;
-        minusDeilgate -= Minus;
-        minusDeilgate(6, 5);
+        ShowMessageDelegate showMessageDelegate = delegate (string str)
+        {
+            Console.WriteLine(str);
+        };
+        showMessageDelegate.Invoke("Hello World!");
 
-        Func<int, int, int> Addition = AddNumbers;
-        Action<string> action = new Action<string>(Display);
-        Predicate<string> predicate = IsApple;
+        RandomNumberDelegate randomNumberDelegate = delegate ()
+        {
+            return new Random().Next(0, 100);
+        };
+        int result = randomNumberDelegate.Invoke();
+        Console.WriteLine(result);
+
+        //MinusDeilgate minusDeilgate = Minus;
+        //minusDeilgate += Sum;
+        //minusDeilgate -= Minus;
+        //minusDeilgate(6, 5);
+
+        //Func<int, int, int> Addition = AddNumbers;
+        //Action<string> action = new Action<string>(Display);
+        //Predicate<string> predicate = IsApple;
 
         //try
         //{
