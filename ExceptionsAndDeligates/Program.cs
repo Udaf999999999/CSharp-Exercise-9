@@ -15,16 +15,44 @@ internal class Program
     public static bool IsApple(string modelName) => modelName == "IPhone X" ? true : false;
     delegate void ShowMessageDelegate(string _message);
     delegate int RandomNumberDelegate();
+    public class Animal { }
+    public class Dog : Animal
+    {
+        public int countPaw;
+        public void Show()
+        {
+            Console.WriteLine(countPaw);
+        }
+
+    }
+    public static void ShowAnimalChoutPaw(Dog dog)
+    {
+        dog.Show();
+    }
+    public delegate void DelegeteAnimal(Dog dog);
+    public class Car { }
+    public class Lexus : Car { }
+    public delegate Car CarDelegate();
+    public static Car CarHandler() => null;
+    public static Lexus LexusHandler() => null;
+    public class Parent { }
+    public class Child : Parent { }
+    public delegate void ChildInfo(Child child);
+    public static void GetParentInfo(Parent parent) {}
     static void Main(string[] args)
     {
+        ChildInfo childDelegate = GetParentInfo;
+        childDelegate(new Child());
 
+        //CarDelegate carDelegate = LexusHandler;
 
-        ShowMessageDelegate showMessageDelegate = (string str) => Console.WriteLine(str);
-        showMessageDelegate.Invoke("Hello World!");
+        //DelegeteAnimal delegeteAnimal = ShowAnimalChoutPaw;
+        //ShowMessageDelegate showMessageDelegate = (string str) => Console.WriteLine(str);
+        //showMessageDelegate.Invoke("Hello World!");
 
-        RandomNumberDelegate randomNumberDelegate = () => new Random().Next(0, 100);
-        int result = randomNumberDelegate.Invoke();
-        Console.WriteLine(result);
+        //RandomNumberDelegate randomNumberDelegate = () => new Random().Next(0, 100);
+        //int result = randomNumberDelegate.Invoke();
+        //Console.WriteLine(result);
 
         //MinusDeilgate minusDeilgate = Minus;
         //minusDeilgate += Sum;
