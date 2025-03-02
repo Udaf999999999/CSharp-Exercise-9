@@ -44,6 +44,7 @@ internal class Program
         ChildInfo childDelegate = GetParentInfo;
         childDelegate(new Child());
 
+
         //CarDelegate carDelegate = LexusHandler;
 
         //DelegeteAnimal delegeteAnimal = ShowAnimalChoutPaw;
